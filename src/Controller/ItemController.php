@@ -1,9 +1,8 @@
 <?php
 namespace Controller;
 
+use Model\Item;
 use Model\ItemManager;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 
 class ItemController extends AbstractController
 {
@@ -12,13 +11,13 @@ class ItemController extends AbstractController
     public function index()
     {
         $itemManager = new ItemManager($this->pdo);
-        $items = $itemManager->selectAllItems();
+        $items = $itemManager->selectAll();
         return $this->twig->render('item.html.twig', ['items' => $items]);
     }
     public function show(int $id)
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneItem($id);
+        $itemManager = new ItemManager($this->pdo);
+        $item = $itemManager->selectOneById($id);
         return $this->twig->render('showItem.html.twig', ['item' => $item]);
     }
 }
