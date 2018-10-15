@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Edit item </h1>
+    <p>{{ error }}</p>
+    <p>Vous souhaitez changer les informations du numéro {{ item.id }} de la liste des items. <br/>Il porte actuellement le titre suivant: {{ item.title }} </p>
+    <form method="post" action="">
+        <label for="item">Nouveau titre</label>
+        <input type="hidden" name="id" value="{{ item.id }}" />
+        <input type="text" name="title" id="item" value="{{ item.title }}" />
+        <button type="submit" name="send" >Edit</button>
+    </form>
+    <a href="/item/{{ item.id }}">Back</a>
+{% endblock %}
